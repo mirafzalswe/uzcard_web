@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+
+{% endblock title %}
+{% block content %}
+
+
+    <div class="main-bar">
+        <h2 style="margin-bottom: 20px;">Оборотка</h2>
+        <form  method="POST">
+            {% csrf_token %}
+        <div class="input-group">
+            <label class="input-group-text" for="card_number">card_num</label>
+            <input class="form-control" type="text" id="card_number" name="card_number">
+        </div>
+        <div style="width: 200px" class="input-group">
+            <label class="input-group-text" for="issue_date">from</label>
+            <input class="form-control" type="date" id="issue_date" name="issue_date">
+        </div>
+        <div style="width: 200px" class="input-group">
+            <label class="input-group-text" for="expiry_date">to</label>
+            <input class="form-control" id="expiry_date" name="expiry_date" type="date">
+        </div>
+        <br> <div class="input-group">
+            <label class="input-group-text" for="sender_email">email</label>
+            <input placeholder="email" class="form-control" type="email" id="sender_email" name="sender_email">
+        </div>
+         <button type="submit">Отпавить заявку</button>
+        </form>
+    </div>
+
+{% endblock content %}

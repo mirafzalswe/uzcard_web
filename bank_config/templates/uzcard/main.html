@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}
+
+{% endblock title %}
+{% block content %}
+
+<div class="container-uz-bar">
+    <h1 style="text-align: center">Ожидающие запросы на email</h1>
+    <div class="table-container">
+        {% if pending_requests %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Пользователь</th>
+                        <th>Номер карты</th>
+                        <th>Дата начала</th>
+                        <th>Дата окончания</th>
+                        <th>Действие</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for request in pending_requests %}
+                        <tr>
+                            <td>{{ request.user.username }}</td>
+                            <td>{{ request.card_num }}</td>
+                            <td>{{ request.issue_date }}</td>
+                            <td>{{ request.expiry_date }}</td>
+                            <td>
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="request_id" value="{{ request.id }}">
+                                    <button type="submit">Подтвердить</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Нет ожидающих запросов.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

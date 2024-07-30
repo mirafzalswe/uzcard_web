@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <script src="{% static 'script.js' %}"></script>
+    <script src="https://kit.fontawesome.com/081c4004bc.js" crossorigin="anonymous"></script>
+    <title>{% block title %}{%  endblock title %}</title>
+</head>
+<body>
+<nav class="navbar">
+    <div class="logo">
+        <img height="60" src="{% static 'logo.png' %}" alt="">
+        <ul class="nav_button">
+            {% if not  is_uzcard_profile  %}
+                <li><a href="">Оборотка</a></li>
+                <li><a href="">Реверсал</a></li>
+                <li><a href="">Эмитент</a></li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <ul class="nav_menu">
+        <li><a href=""><i class="fa-regular fa-user"></i> Profile</a></li>
+        <li><a href=""><i class="fa-regular fa-gear"></i> Setting</a></li>
+        <li><a href="{% url 'users:logout' %}"><i class="fa-solid fa-right-from-bracket"></i> logout</a></li>
+    </ul>
+
+
+</nav>
+    {% block content %}
+
+   {% endblock content %}
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    {% if success_message %}
+        <p style="color: green;">{{ success_message }}</p>
+    {% endif %}
+    {{ transactions }}
+</body>
+</html>

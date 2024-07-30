@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="split left">
+        <div class="centered">
+            <img height="300" src="{% static 'logo.png' %}" alt="Logo">
+        </div>
+
+    </div>
+    <div class="split right">
+        <div class="centered">
+            <form method="post" class="login-form">
+                <h2>Bank user</h2>
+                <div class="input-group">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+    <script src="{% static 'script.js' %}"> </script>
+</body>
+</html>
